@@ -2,7 +2,7 @@ const fs = require("fs")
 const path = require("path")
 
 const inPath = "scar"
-const outPath = "C:\\Users\\xtrem\\Documents\\toratest\\assets\\scar"
+const outPath = process.argv[2]
 
 const inFile = path.join(inPath, "main.lua")
 

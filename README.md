@@ -6,4 +6,5 @@ Very experimental project to allow writing TypeScript for Age of Empires 4 moddi
 
 ## Usage
 - `npm run build`: Converts the scripts in `scripts/` to a single Lua file
-- `npm run deploy`: Copies the lua file to the project directory and does some necessary post-processing
+- `npm run dev`: Automatically converts the scripts in `scripts/` to a single Lua file whenever any scripts change
+- `npm run deploy <scar directory>`: Copies the Lua file to the project directory and does some necessary post-processing, scar directory is eg. `C:\Users\username\Documents\projectname\assets\scar`
