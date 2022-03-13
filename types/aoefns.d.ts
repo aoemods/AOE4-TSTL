@@ -5092,7 +5092,7 @@ declare function BP_GetAIStateModelTuningsBlueprintByPbgID(pbgID: Integer): any;
 /**
  * Returns an entity property bag group.
  */
-declare function BP_GetEntityBlueprint(pbgShortname: String): any;
+declare function BP_GetEntityBlueprint(pbgShortname: String): EntityBlueprint;
 /**
  * Returns an entity property bag group.
  */
@@ -5179,7 +5179,7 @@ declare function BP_GetSlotItemBlueprintByPbgID(pbgID: Integer): any;
 /**
  * Returns a squad property bag group.
  */
-declare function BP_GetSquadBlueprint(pbgShortname: String): any;
+declare function BP_GetSquadBlueprint(pbgShortname: String): SquadBlueprint;
 /**
  * Returns a squad property bag group.
  */
@@ -7111,7 +7111,7 @@ declare function Entity_GetPlayerOwner(entity: EntityID): any;
 /**
  * Returns the position of the entity.  The position is currently a lua table with three entries (x, y, z)
  */
-declare function Entity_GetPosition(entity: EntityID): any;
+declare function Entity_GetPosition(entity: EntityID): ScarPosition;
 /**
  * Returns the blueprint for a production queue item with index.
  */
@@ -9050,7 +9050,7 @@ declare function Player_GetRace(player: Player): any;
 /**
  * Returns the name of the race for a given player (always in english)
  */
-declare function Player_GetRaceName(player: Player): any;
+declare function Player_GetRaceName(player: Player): string;
 /**
  * DEPRECATED, use Player_ObserveRelationship instead.
  */
@@ -10024,11 +10024,11 @@ declare function SGroup_CountSpawned(sgroup: SGroupID): any;
  * Returns a new squadron group with the given name.
  * Squad groups are used for all units and vehicles.  You can issue orders such as move and attack to an entire squad group. If you want a group for buildings or objects such as trees, use an sim::EntityGroupObs instead.\n Note that you cannot create sgroups with duplicate names.\n To be safe, you can check if the SGroup you want to create exists using SGroup_Exists( )
  */
-declare function SGroup_Create(name: String): any;
+declare function SGroup_Create(name: String): SGroupID;
 /**
  * Find a squad group from name.  Creates a new one with given name if it doesnt exist.
  */
-declare function SGroup_CreateIfNotFound(name: String): any;
+declare function SGroup_CreateIfNotFound(name: String): SGroupID;
 /**
  * Create and display kicker message on the each squad in the sgroup to the player
  */
@@ -10764,7 +10764,7 @@ declare function Squad_EnableSurprise(squad: SquadID, enable: Boolean): any;
 /**
  * ZERO-BASED get of entities out of squads
  */
-declare function Squad_EntityAt(squad: SquadID, index: Integer): any;
+declare function Squad_EntityAt(squad: SquadID, index: Integer): EntityID;
 /**
  * Returns total squad extension count.
  */
@@ -13018,11 +13018,11 @@ declare function Util_GetMouseoverSGroup(): any;
 /**
  * Returns a position relative to a entity/squad/egroup/sgroup/marker/position's current position and orientation.
  */
-declare function Util_GetOffsetPosition(pos: EGroupID, offset: Integer, distance: Real): any;
+declare function Util_GetOffsetPosition(pos: EGroupID | SquadID | EntityID | SGroupID | MarkerID | ScarPosition, offset: Integer, distance: Real): any;
 /**
  * Returns the player owner for any of: entity, squad, egroup, sgroup, player. for groups, the first item is used. Returns nil for world owned or empty groups
  */
-declare function Util_GetPlayerOwner(Object: EGroupID): any;
+declare function Util_GetPlayerOwner(Object: EGroupID | SquadID | SGroupID | PlayerID | EntityID): any;
 /**
  * Returns a position from entity/marker/pos/egroup/sgroup/squad
  */
@@ -13045,7 +13045,7 @@ declare function Util_GetRandomHiddenPosition(items: EGroupID): any;
 /**
  * Returns a random position either within the marker's proximity or with a pos and range provided. Range is ignored for rectangular markers
  */
-declare function Util_GetRandomPosition(OPT_range: Real, OPT_hidden: Boolean): any;
+declare function Util_GetRandomPosition(OPT_range: Real | ScarPosition, OPT_hidden: Boolean | number): ScarPosition;
 /**
  * Gets the relationship between two of: entity, squad, egroup, sgroup, player. for groups, the first item is used. returns R_ENEMY, R_ALLY, R_NEUTRAL, R_UNDEFINED, or nil (if world owned or invalid parameters)
  */
@@ -13310,7 +13310,7 @@ declare function World_GetGameTime(): any;
 /**
  * returns the height of ground at 2D pos x,y
  */
-declare function World_GetHeightAt(x: Real, y: Real): any;
+declare function World_GetHeightAt(x: Real, y: Real): Real;
 /**
  * Returns the interaction stage of the cell in the provided position
  * Returns a value between 0 - 63
@@ -13517,7 +13517,7 @@ declare function World_PointPointProx(p1: Position, p2: Position, prox: Real): a
  * Creates a new Position object.
  * A position object is basically a table with an x, y, and z attribute.  You can directly access the individual components in the same way that you would access a field in a table.\n\n Example:\n --* lua script snip\n local pos = World_Pos(2, 0, 0)\n pos.x = pos.x + 1\n print pos.x -- this will print 3\n --* lua script snip\n
  */
-declare function World_Pos(x: Real, y: Real, z: Real): any;
+declare function World_Pos(x: Real, y: Real, z: Real): ScarPosition;
 /**
  * Returns if given position is in playable area.
  */
